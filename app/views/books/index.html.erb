@@ -1,6 +1,11 @@
 
-
-
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件errorが発生しました
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+<%= notice %>
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
@@ -20,11 +25,9 @@
         </tbody>
       </table>
       <div class="row">
-       <% if @user.id == current_user.id %>
          <%= link_to edit_user_path(@user),class:"btn btn-outline-secondary btn-block " do %>
           <i class="fas fa-user-cog"></i>
          <% end %>
-       <% end %>
       </div>
       <%= render 'books/new', book: @book %>
     </div>
@@ -55,9 +58,9 @@
             </td>
           </tr>
           <% end %>
-          <%= paginate @books %>
         </tbody>
       </table>
+
     </div>
   </div>
 </div>
